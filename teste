@@ -1,0 +1,140 @@
+Pessoa 1 – Banco de Dados
+📄 Script banco.sql
+
+CREATE TABLE Clientes (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  nome VARCHAR(100),
+  email VARCHAR(100) UNIQUE,
+  senha VARCHAR(100),
+  telefone VARCHAR(20)
+);
+
+CREATE TABLE Sabores (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  nome VARCHAR(100),
+  descricao TEXT,
+  preco DECIMAL(6,2),
+  imagem VARCHAR(255)
+);
+
+CREATE TABLE Pedidos (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  clienteId INT,
+  data DATETIME,
+  status VARCHAR(50),
+  FOREIGN KEY (clienteId) REFERENCES Clientes(id)
+);
+
+CREATE TABLE ItensPedido (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  pedidoId INT,
+  saborId INT,
+  quantidade INT,
+  FOREIGN KEY (pedidoId) REFERENCES Pedidos(id),
+  FOREIGN KEY (saborId) REFERENCES Sabores(id)
+);
+
+-- Exemplos de sabores
+INSERT INTO Sabores (nome, descricao, preco, imagem) VALUES
+('Chocolate', 'Sabor clássico de chocolate', 5.50, 'chocolate.jpg'),
+('Morango', 'Sabor suave de morango', 5.00, 'morango.jpg'),
+('Baunilha', 'Sabor tradicional de baunilha', 4.80, 'baunilha.jpg');
+
+-----------------------------------------------------------------------------
+ Pessoa 2 – API (Sabores)
+📁 Arquivo sabores.routes.js
+
+const express = require('express');
+const router = express.Router();
+const db = require('./db'); // conexão com banco
+
+router.get('/sabores', async (req, res) => {
+  const [rows] = await db.query('SELECT * FROM Sabores');
+  res.json(rows);
+});
+
+router.post('/sabores', async (req, res) => {
+  const { nome, descricao, preco, imagem } = req.body;
+  await db.query('INSERT INTO Sabores (nome, descricao, preco, imagem) VALUES (?, ?, ?, ?)', [nome, descricao, preco, imagem]);
+  res.status(201).send('Sabor adicionado');
+});
+
+router.put('/sabores/:id', async (req, res) => {
+  const { nome, descricao, preco, imagem } = req.body;
+  await db.query('UPDATE Sabores SET nome=?, descricao=?, preco=?, imagem=? WHERE id=?', [nome, descricao, preco, imagem, req.params.id]);
+  res.send('Sabor atualizado');
+});
+
+router.delete('/sabores/:id', async (req, res) => {
+  await db.query('DELETE FROM Sabores WHERE id=?', [req.params.id]);
+  res.send('Sabor excluído');
+});
+
+module.exports = router;
+
+-----------------------------------------------------
+Pessoa 3 – API (Clientes & Pedidos)
+📁 Arquivo clientes_pedidos.routes.js
+
+
+const express = require('express');
+const router = express.Router();
+const db = require('./db');
+
+// Clientes
+router.post('/clientes', async (req, res) => {
+  const { nome, email, senha, telefone } = req.body;
+  await db.query('INSERT INTO Clientes (nome, email, senha, telefone) VALUES (?, ?, ?, ?)', [nome, email, senha, telefone]);
+  res.status(201).send('Cliente cadastrado');
+});
+
+router.post('/login', async (req, res) => {
+  const { email, senha } = req.body;
+  const [rows] = await db.query('SELECT * FROM Clientes WHERE email=? AND senha=?', [email, senha]);
+  if (rows.length > 0) res.json(rows[0]);
+  else res.status(401).send('Login inválido');
+});
+
+// Pedidos
+router.post('/pedidos', async (req, res) => {
+  const { clienteId, itens } = req.body;
+  const [result] = await db.query('INSERT INTO Pedidos (clienteId, data, status) VALUES (?, NOW(), ?)', [clienteId, 'Pendente']);
+  const pedidoId = result.insertId;
+
+  for (const item of itens) {
+    await db.query('INSERT INTO ItensPedido (pedidoId, saborId, quantidade) VALUES (?, ?, ?)', [pedidoId, item.saborId, item.quantidade]);
+  }
+
+  res.status(201).send('Pedido criado');
+});
+
+router.get('/pedidos/:clienteId', async (req, res) => {
+  const [rows] = await db.query('SELECT * FROM Pedidos WHERE clienteId=?', [req.params.clienteId]);
+  res.json(rows);
+});
+
+module.exports = router;
+
+
+Pessoa 4 – Frontend
+📁 Estrutura da pasta frontend/
+
+├── index.html         → Home
+├── cardapio.html      → Lista de sabores
+├── login.html         → Login
+├── cadastro.html      → Cadastro
+├── carrinho.html      → Seleção de sabores e pedido
+├── style.css          → Estilo geral
+└── script.js          → Funções com fetch
+
+
+
+// script.js
+async function listarSabores() {
+  const res = await fetch('http://localhost:3000/sabores');
+  const sabores = await res.json();
+  const container = document.getElementById('lista-sabores');
+  sabores.forEach(sabor => {
+    container.innerHTML += `<div>${sabor.nome} - R$${sabor.preco}</div>`;
+  });
+}
