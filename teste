@@ -1,6 +1,4 @@
 Pessoa 1 – Banco de Dados
-📄 Script banco.sql
-
 CREATE TABLE Clientes (
   id INT PRIMARY KEY AUTO_INCREMENT,
   nome VARCHAR(100),
@@ -34,11 +32,13 @@ CREATE TABLE ItensPedido (
   FOREIGN KEY (saborId) REFERENCES Sabores(id)
 );
 
+
 -- Exemplos de sabores
 INSERT INTO Sabores (nome, descricao, preco, imagem) VALUES
 ('Chocolate', 'Sabor clássico de chocolate', 5.50, 'chocolate.jpg'),
 ('Morango', 'Sabor suave de morango', 5.00, 'morango.jpg'),
 ('Baunilha', 'Sabor tradicional de baunilha', 4.80, 'baunilha.jpg');
+
 
 -----------------------------------------------------------------------------
  Pessoa 2 – API (Sabores)
