@@ -1,36 +1,36 @@
 Pessoa 1 – Banco de Dados
-CREATE TABLE Clientes (
-  id INT PRIMARY KEY AUTO_INCREMENT,
-  nome VARCHAR(100),
-  email VARCHAR(100) UNIQUE,
-  senha VARCHAR(100),
-  telefone VARCHAR(20)
-);
+ CREATE TABLE Clientes (
+    ->   id INT PRIMARY KEY AUTO_INCREMENT,
+    ->   nome VARCHAR(100),
+    ->   email VARCHAR(100) UNIQUE,
+    ->   senha VARCHAR(100),
+    ->   telefone VARCHAR(20)
+    -> );
 
-CREATE TABLE Sabores (
-  id INT PRIMARY KEY AUTO_INCREMENT,
-  nome VARCHAR(100),
-  descricao TEXT,
-  preco DECIMAL(6,2),
-  imagem VARCHAR(255)
-);
+ create table Sabores (
+    -> id int primary key auto_increment,
+    -> nome varchar(100),
+    -> descricao text,
+    -> preco decimal(6,2),
+    -> imagem varchar(255)
+    -> );
 
 CREATE TABLE Pedidos (
-  id INT PRIMARY KEY AUTO_INCREMENT,
-  clienteId INT,
-  data DATETIME,
-  status VARCHAR(50),
-  FOREIGN KEY (clienteId) REFERENCES Clientes(id)
-);
+    ->   id INT PRIMARY KEY AUTO_INCREMENT,
+    ->   clienteId INT,
+    ->   data DATETIME,
+    ->   status VARCHAR(50),
+    ->   FOREIGN KEY (clienteId) REFERENCES Clientes(id)
+    -> );
 
-CREATE TABLE ItensPedido (
-  id INT PRIMARY KEY AUTO_INCREMENT,
-  pedidoId INT,
-  saborId INT,
-  quantidade INT,
-  FOREIGN KEY (pedidoId) REFERENCES Pedidos(id),
-  FOREIGN KEY (saborId) REFERENCES Sabores(id)
-);
+mysql> CREATE TABLE ItensPedido (
+    ->   id INT PRIMARY KEY AUTO_INCREMENT,
+    ->   pedidoId INT,
+    ->   saborId INT,
+    ->   quantidade INT,
+    ->   FOREIGN KEY (pedidoId) REFERENCES Pedidos(id),
+    ->   FOREIGN KEY (saborId) REFERENCES Sabores(id)
+    -> );
 
 
 -- Exemplos de sabores
