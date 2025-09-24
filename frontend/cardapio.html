@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cardápio - Sorveteria Delícia</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>🍦 Sorveteria Delícia</h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="cardapio.html" class="active">Cardápio</a></li>
+                    <li><a href="carrinho.html">Carrinho</a></li>
+                    <li><a href="login.html">Login</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="cardapio">
+            <div class="container">
+                <h2>Nosso Cardápio</h2>
+                <p>Confira todos os sabores disponíveis e escolha seus favoritos!</p>
+                
+                <div class="loading" id="loading">
+                    <p>Carregando sabores...</p>
+                </div>
+                
+                <div class="sabores-grid" id="lista-sabores">
+                    <!-- Sabores serão carregados dinamicamente via JavaScript -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Sorveteria Delícia. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Carregar sabores quando a página for carregada
+        document.addEventListener('DOMContentLoaded', listarSabores);
+    </script>
+</body>
+</html>

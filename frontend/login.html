@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Sorveteria Delícia</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>🍦 Sorveteria Delícia</h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="cardapio.html">Cardápio</a></li>
+                    <li><a href="carrinho.html">Carrinho</a></li>
+                    <li><a href="login.html" class="active">Login</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="auth-section">
+            <div class="container">
+                <div class="auth-card">
+                    <h2>Entrar na sua conta</h2>
+                    <form id="login-form">
+                        <div class="form-group">
+                            <label for="email">E-mail:</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="senha">Senha:</label>
+                            <input type="password" id="senha" name="senha" required>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">Entrar</button>
+                    </form>
+                    
+                    <div class="auth-links">
+                        <p>Não tem uma conta? <a href="cadastro.html">Cadastre-se aqui</a></p>
+                    </div>
+                    
+                    <div class="message" id="login-message"></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Sorveteria Delícia. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        document.getElementById('login-form').addEventListener('submit', fazerLogin);
+    </script>
+</body>
+</html>
