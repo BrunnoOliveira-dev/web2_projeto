@@ -1,8 +1,8 @@
-# 🍦 Sistema de Sorveteria - Projeto Web2
+# Sistema de Sorveteria - Projeto Web2
 
 Sistema completo para gerenciamento de sorveteria com frontend e backend integrados.
 
-## 📁 Estrutura do Projeto
+## Estrutura do Projeto
 
 ```
 web2_projeto/
@@ -30,7 +30,7 @@ web2_projeto/
 └── README.md           # Este arquivo
 ```
 
-## 🚀 Como Executar o Projeto
+## Como Executar o Projeto
 
 ### 1. Configurar o Backend (API)
 
@@ -74,7 +74,7 @@ http-server -p 8000
 - **API**: http://localhost:3000
 - **Documentação da API**: http://localhost:3000
 
-## 🎯 Funcionalidades
+## Funcionalidades
 
 ### Frontend
 - ✅ Página inicial atrativa
@@ -163,7 +163,7 @@ PUT    /pedidos/:id/status      # Atualizar status
 GET    /pedidos                 # Todos os pedidos
 ```
 
-## 🔒 Segurança Implementada
+## Segurança Implementada
 
 - ✅ Senhas criptografadas (bcrypt)
 - ✅ Validação de entrada de dados
@@ -186,7 +186,7 @@ GET    /pedidos                 # Todos os pedidos
 - Relacionamentos com integridade referencial
 - Dados de exemplo pré-cadastrados
 
-## 🎨 Design e UX
+## Design e UX
 
 - Interface moderna e intuitiva
 - Paleta de cores atrativa
@@ -219,7 +219,7 @@ curl -X POST http://localhost:3000/login \
 5. Adicione itens ao carrinho
 6. Finalize um pedido
 
-## 🐛 Troubleshooting
+## Troubleshooting
 
 ### API não inicia
 - Verifique se o MySQL está rodando
@@ -235,18 +235,10 @@ curl -X POST http://localhost:3000/login \
 - A API já está configurada para aceitar requisições do frontend
 - Verifique se as portas estão corretas
 
-
-## 👥 Equipe de Desenvolvimento
-
-- **Pessoa 1**: Banco de Dados (MySQL, Triggers, Índices)
-- **Pessoa 2**: API Sabores (CRUD completo, Validações)
-- **Pessoa 3**: API Clientes & Pedidos (Autenticação, Negócios)
-- **Pessoa 4**: Frontend (UI/UX, Integração, Responsividade)
-
-## 📄 Licença
+## Licença
 
 Este projeto é desenvolvido para fins educacionais no curso de TI.
 
 ---
 
-**🍦 Sorveteria Delícia - Sabores únicos, experiência digital completa!**
+** Sorveteria Hipotética - Sabores únicos, experiência digital completa!**

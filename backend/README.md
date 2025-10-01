@@ -1,4 +1,4 @@
-# API da Sorveteria Delícia
+# API da Sorveteria Hipotética
 
 API RESTful para sistema de gerenciamento de sorveteria desenvolvida em Node.js com Express e MySQL.
 

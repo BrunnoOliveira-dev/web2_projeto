@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Script de instalação da API da Sorveteria
-echo "🍦 Configurando API da Sorveteria Delícia..."
+echo "🍦 Configurando API da Sorveteria Hipotética..."
 
 # Detectar sistema operacional
 detect_os() {
