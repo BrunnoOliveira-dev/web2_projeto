@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { query } = require('../db');
+const { query, pool } = require('../db');
 
 // POST /pedidos - Criar novo pedido
 router.post('/pedidos', async (req, res) => {
@@ -32,11 +32,13 @@ router.post('/pedidos', async (req, res) => {
     }
     
     // Iniciar transação para garantir consistência
-    const connection = await query('START TRANSACTION');
+    const connection = await pool.getConnection();
     
     try {
+      await connection.beginTransaction();
+      
       // Inserir pedido
-      const resultPedido = await query(
+      const [resultPedido] = await connection.execute(
         'INSERT INTO Pedidos (clienteId, data, status) VALUES (?, NOW(), ?)',
         [clienteId, 'Pendente']
       );
@@ -45,14 +47,15 @@ router.post('/pedidos', async (req, res) => {
       
       // Inserir itens do pedido
       for (const item of itens) {
-        await query(
+        await connection.execute(
           'INSERT INTO ItensPedido (pedidoId, saborId, quantidade) VALUES (?, ?, ?)',
           [pedidoId, item.saborId, item.quantidade]
         );
       }
       
       // Confirmar transação
-      await query('COMMIT');
+      await connection.commit();
+      connection.release();
       
       res.status(201).json({ 
         message: 'Pedido criado com sucesso',
@@ -60,7 +63,8 @@ router.post('/pedidos', async (req, res) => {
       });
     } catch (error) {
       // Reverter transação em caso de erro
-      await query('ROLLBACK');
+      await connection.rollback();
+      connection.release();
       throw error;
     }
   } catch (error) {
