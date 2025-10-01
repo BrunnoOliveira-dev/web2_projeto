@@ -335,6 +335,25 @@ function atualizarInterface() {
             loginLink.href = '#';
             loginLink.onclick = logout;
         }
+        
+        // Se for admin, adicionar link para página de administração
+        if (usuarioLogado.email === 'admin@sorveteria.com') {
+            const adminLinkExists = navElement.querySelector('a[href="admin.html"]');
+            if (!adminLinkExists) {
+                const adminLi = document.createElement('li');
+                adminLi.innerHTML = '<a href="admin.html">Admin</a>';
+                
+                // Inserir antes do último item (Login/Logout)
+                const lastLi = navElement.lastElementChild;
+                navElement.insertBefore(adminLi, lastLi);
+            }
+        }
+    } else {
+        // Remover link de admin se existir
+        const adminLink = navElement.querySelector('a[href="admin.html"]');
+        if (adminLink) {
+            adminLink.parentElement.remove();
+        }
     }
 }
 

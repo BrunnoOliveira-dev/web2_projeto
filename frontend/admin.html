@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administrador - Sorveteria Cream Dream</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>🍦 Sorveteria Cream Dream - Admin</h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="cardapio.html">Cardápio</a></li>
+                    <li><a href="admin.html" class="active">Admin</a></li>
+                    <li><a href="#" onclick="logout()">Logout</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="admin-tabs">
+                <button class="tab-button active" onclick="showTab('sabores')">Gerenciar Sabores</button>
+                <button class="tab-button" onclick="showTab('pedidos')">Ver Pedidos</button>
+            </div>
+
+            <!-- Tab: Gerenciar Sabores -->
+            <section class="admin-tab" id="sabores-tab">
+                <h2>Gerenciar Sabores</h2>
+                
+                <!-- Formulário para adicionar/editar sabor -->
+                <div class="form-container">
+                    <h3 id="form-title">Adicionar Novo Sabor</h3>
+                    <form id="sabor-form">
+                        <input type="hidden" id="sabor-id" name="id">
+                        
+                        <div class="form-group">
+                            <label for="nome">Nome do Sabor:</label>
+                            <input type="text" id="nome" name="nome" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="descricao">Descrição:</label>
+                            <textarea id="descricao" name="descricao" required></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="preco">Preço (R$):</label>
+                            <input type="number" id="preco" name="preco" step="0.01" min="0" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="imagem">URL da Imagem:</label>
+                            <input type="url" id="imagem" name="imagem">
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="submit" class="btn-primary">Salvar Sabor</button>
+                            <button type="button" onclick="cancelarEdicao()" class="btn-secondary">Cancelar</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div id="admin-message"></div>
+                
+                <!-- Lista de sabores para administração -->
+                <div class="admin-sabores">
+                    <h3>Sabores Cadastrados</h3>
+                    <div class="loading" id="loading-sabores">
+                        <p>Carregando sabores...</p>
+                    </div>
+                    <div class="sabores-admin-list" id="lista-sabores-admin">
+                        <!-- Sabores serão carregados dinamicamente -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tab: Ver Pedidos -->
+            <section class="admin-tab hidden" id="pedidos-tab">
+                <h2>Pedidos</h2>
+                
+                <div class="filter-container">
+                    <select id="status-filter" onchange="filtrarPedidos()">
+                        <option value="">Todos os Status</option>
+                        <option value="Pendente">Pendente</option>
+                        <option value="Em Preparo">Em Preparo</option>
+                        <option value="Pronto">Pronto</option>
+                        <option value="Entregue">Entregue</option>
+                        <option value="Cancelado">Cancelado</option>
+                    </select>
+                </div>
+                
+                <div class="loading" id="loading-pedidos">
+                    <p>Carregando pedidos...</p>
+                </div>
+                
+                <div class="pedidos-list" id="lista-pedidos">
+                    <!-- Pedidos serão carregados dinamicamente -->
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Sorveteria Cream Dream. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="admin.js"></script>
+    <script>
+        // Verificar se o usuário é administrador ao carregar a página
+        document.addEventListener('DOMContentLoaded', function() {
+            verificarAdmin();
+            carregarSaboresAdmin();
+            carregarPedidos();
+        });
+    </script>
+</body>
+</html>

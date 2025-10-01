@@ -6,28 +6,26 @@ Sistema completo para gerenciamento de sorveteria com frontend e backend integra
 
 ```
 web2_projeto/
-├── frontend/              # Interface do usuário
-│   ├── index.html        # Página inicial
-│   ├── cardapio.html     # Lista de sabores
-│   ├── login.html        # Autenticação
-│   ├── cadastro.html     # Registro de usuários
-│   ├── carrinho.html     # Carrinho de compras
-│   ├── style.css         # Estilos CSS
-│   └── script.js         # JavaScript/Fetch API
-│
-├── backend/              # API REST
-│   ├── routes/          # Rotas da API
+├── frontend/
+│   ├── index.html
+│   ├── cardapio.html
+│   ├── login.html
+│   ├── cadastro.html
+│   ├── carrinho.html
+│   ├── style.css
+│   └── script.js
+├── backend/
+│   ├── routes/
 │   │   ├── sabores.routes.js
 │   │   ├── clientes.routes.js
 │   │   └── pedidos.routes.js
-│   ├── server.js        # Servidor principal
-│   ├── db.js           # Configuração do banco
-│   ├── banco.sql       # Script SQL
-│   ├── package.json    # Dependências
-│   ├── .env           # Configurações
-│   └── install.sh     # Script de instalação
-│
-└── README.md           # Este arquivo
+│   ├── server.js
+│   ├── db.js
+│   ├── banco.sql
+│   ├── package.json
+│   ├── .env
+│   └── install.sh
+└── README.md
 ```
 
 ## Como Executar o Projeto
