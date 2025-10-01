@@ -28,7 +28,7 @@ app.use((req, res, next) => {
 // Rota de teste
 app.get('/', (req, res) => {
   res.json({
-    message: 'API da Sorveteria Hipotética está funcionando!',
+    message: 'API da Sorveteria Cream Dream está funcionando!',
     version: '1.0.0',
     endpoints: {
       sabores: '/sabores',

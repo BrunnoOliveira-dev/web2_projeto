@@ -241,4 +241,4 @@ Este projeto é desenvolvido para fins educacionais no curso de TI.
 
 ---
 
-** Sorveteria Hipotética - Sabores únicos, experiência digital completa!**
+** Sorveteria Cream Dreamica - Sabores únicos, experiência digital completa!**

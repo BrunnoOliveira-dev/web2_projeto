@@ -1,4 +1,4 @@
-# API da Sorveteria Hipotética
+# API da Sorveteria Cream Dream
 
 API RESTful para sistema de gerenciamento de sorveteria desenvolvida em Node.js com Express e MySQL.
 

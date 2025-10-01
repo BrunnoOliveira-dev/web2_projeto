@@ -131,7 +131,7 @@ Acesse: http://localhost:3000
 Deve retornar:
 ```json
 {
-  "message": "API da Sorveteria Hipotética está funcionando!",
+  "message": "API da Sorveteria Cream Dream está funcionando!",
   "version": "1.0.0"
 }
 ```
