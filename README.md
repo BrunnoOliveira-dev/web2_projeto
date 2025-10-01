@@ -34,25 +34,11 @@ web2_projeto/
 
 ### 1. Configurar o Backend (API)
 
-**Linux/macOS:**
+**Instalação Normal:**
 ```bash
 cd backend
 ./install.sh          # Instalação automática
 npm run dev           # Iniciar servidor
-```
-
-**Windows (PowerShell como Admin):**
-```powershell
-cd backend
-.\install.ps1         # Instalação automática
-npm run dev          # Iniciar servidor
-```
-
-**Windows (Prompt como Admin):**
-```cmd
-cd backend
-install.bat          # Instalação automática
-npm run dev         # Iniciar servidor
 ```
 
 **Instalação Manual (qualquer sistema):**
@@ -84,7 +70,7 @@ http-server -p 8000
 
 ### 3. Acessar o Sistema
 
-- **Frontend**: http://localhost:8000
+- **Frontend**: http://localhost:8000d
 - **API**: http://localhost:3000
 - **Documentação da API**: http://localhost:3000
 
@@ -249,27 +235,6 @@ curl -X POST http://localhost:3000/login \
 - A API já está configurada para aceitar requisições do frontend
 - Verifique se as portas estão corretas
 
-## 📈 Próximas Melhorias
-
-### Features Sugeridas
-- [ ] Sistema de avaliações
-- [ ] Programa de fidelidade
-- [ ] Integração com pagamentos
-- [ ] Notificações push
-- [ ] Dashboard administrativo
-- [ ] Relatórios de vendas
-- [ ] Sistema de cupons
-- [ ] Chat de suporte
-
-### Melhorias Técnicas
-- [ ] Testes automatizados
-- [ ] Docker containerization
-- [ ] CI/CD pipeline
-- [ ] Monitoramento e logs
-- [ ] Cache Redis
-- [ ] Upload de imagens
-- [ ] API rate limiting
-- [ ] Documentação OpenAPI/Swagger
 
 ## 👥 Equipe de Desenvolvimento
 
@@ -280,7 +245,7 @@ curl -X POST http://localhost:3000/login \
 
 ## 📄 Licença
 
-Este projeto é desenvolvido para fins educacionais no curso de Desenvolvimento Web.
+Este projeto é desenvolvido para fins educacionais no curso de TI.
 
 ---
 
