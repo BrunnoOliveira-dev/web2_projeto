@@ -73,8 +73,11 @@ INSERT INTO Sabores (nome, descricao, preco, imagem) VALUES
 
 -- Criar usuário administrador de exemplo (senha: admin123)
 -- Nota: Em produção, use senhas mais seguras e criptografadas
+-- INSERT INTO Clientes (nome, email, senha, telefone) VALUES
+-- ('Administrador', 'admin@sorveteria.com', '$2a$10$HUu5hpxWr8jW1I7WLxhIouc/4abO94N7MQ9lQPptnGCiWH88.K0lu', '(11) 99999-9999');
+
 INSERT INTO Clientes (nome, email, senha, telefone) VALUES
-('Administrador', 'admin@sorveteria.com', '$2a$10$HUu5hpxWr8jW1I7WLxhIouc/4abO94N7MQ9lQPptnGCiWH88.K0lu', '(11) 99999-9999');
+('Administrador', 'admin@sorveteria.com', 'admin123', '(11) 99999-9999');
 
 -- Trigger para calcular o total do pedido automaticamente
 DELIMITER //

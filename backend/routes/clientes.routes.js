@@ -41,7 +41,8 @@ router.post('/clientes', async (req, res) => {
     
     // Criptografar senha
     const saltRounds = 10;
-    const senhaHash = await bcrypt.hash(senha, saltRounds);
+    // const senhaHash = await bcrypt.hash(senha, saltRounds);
+    const senhaHash = senha;
     
     // Inserir cliente no banco
     const result = await query(
@@ -79,7 +80,8 @@ router.post('/login', async (req, res) => {
     const cliente = clientes[0];
     
     // Verificar senha
-    const senhaValida = await bcrypt.compare(senha, cliente.senha);
+    // const senhaValida = await bcrypt.compare(senha, cliente.senha);
+    const senhaValida = senha === cliente.senha;
     if (!senhaValida) {
       return res.status(401).json({ error: 'Email ou senha incorretos' });
     }
