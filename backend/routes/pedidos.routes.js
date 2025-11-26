@@ -186,14 +186,16 @@ router.get('/pedidos', async (req, res) => {
     
     const params = [];
     
+    // console.log("STATUS:", status);  
     if (status) {
-      sql += ' WHERE p.status = ?';
+      sql += ' WHERE p.status = '+ status;
       params.push(status);
     }
     
-    sql += ' ORDER BY p.data DESC LIMIT ? OFFSET ?';
+    sql += ' ORDER BY p.data DESC LIMIT '+ limit + ' OFFSET ' + offset+ ';';
     params.push(parseInt(limit), parseInt(offset));
-    
+
+
     const pedidos = await query(sql, params);
     
     res.json(pedidos);
