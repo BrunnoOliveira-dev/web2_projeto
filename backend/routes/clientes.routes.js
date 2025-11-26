@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { query } = require('../db');
 
@@ -39,9 +38,7 @@ router.post('/clientes', async (req, res) => {
       return res.status(409).json({ error: 'Este email já está cadastrado' });
     }
     
-    // Criptografar senha
-    const saltRounds = 10;
-    // const senhaHash = await bcrypt.hash(senha, saltRounds);
+    // Atualmente a senha é armazenada diretamente (sem hashing)
     const senhaHash = senha;
     
     // Inserir cliente no banco
@@ -79,8 +76,7 @@ router.post('/login', async (req, res) => {
     
     const cliente = clientes[0];
     
-    // Verificar senha
-    // const senhaValida = await bcrypt.compare(senha, cliente.senha);
+    // Verificar senha (comparação direta, sem hashing)
     const senhaValida = senha === cliente.senha;
     if (!senhaValida) {
       return res.status(401).json({ error: 'Email ou senha incorretos' });
